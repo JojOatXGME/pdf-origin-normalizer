@@ -1,5 +1,6 @@
 package de.xgme.jojo.pdfnormalizer;
 
+import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -29,7 +30,7 @@ public class Main {
         // Load input file
         final PDDocument doc;
         try {
-            doc = PDDocument.load(inputFile);
+            doc = Loader.loadPDF(inputFile);
         } catch (IOException e) {
             System.err.println("Could not read input file: " + e.getMessage());
             System.exit(1);
