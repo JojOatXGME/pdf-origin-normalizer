@@ -4,7 +4,6 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
-import org.apache.pdfbox.pdmodel.common.PDStream;
 import org.apache.pdfbox.util.Matrix;
 
 import java.io.File;
@@ -38,10 +37,14 @@ public class Main {
         }
 
         // Modify pages
+        int pageNumber = 0;
         for (final PDPage page : doc.getPages()) {
             final float tx = -page.getTrimBox().getLowerLeftX();
             final float ty = -page.getTrimBox().getLowerLeftY();
             final Matrix mat = Matrix.getTranslateInstance(tx, ty);
+
+            pageNumber += 1;
+            System.err.println("Move origin of page " + pageNumber + " by " + -tx + ", " + -ty);
 
             // Update views
             {
